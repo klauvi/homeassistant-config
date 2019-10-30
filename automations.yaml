@@ -1,0 +1,203 @@
+- id: '1570730664159'
+  alias: Rofi Stofa 1 click up Loftljós ON
+  trigger:
+  - entity_id: sensor.stofa_switch
+    platform: state
+    to: 1_click_up
+  condition: []
+  action:
+  - alias: ''
+    data:
+      brightness: 220
+      entity_id: light.stofa
+    service: light.turn_on
+- id: '1570731952553'
+  alias: Rofi Stofa 2 click up Lampi ON
+  trigger:
+  - entity_id: sensor.stofa_switch
+    platform: state
+    to: 2_click_up
+  condition: []
+  action:
+  - alias: ''
+    data:
+      brightness: 200
+      entity_id: light.stofulampi
+    service: light.turn_on
+- id: '1570732777282'
+  alias: Button logger
+  trigger:
+  - entity_id: sensor.stofa_switch
+    platform: state
+  condition: []
+  action:
+  - data:
+      data:
+        push:
+          category: GENERIC
+      message: '{{states(''sensor.stofa_switch'')}}'
+    service: notify.ios_finnurs_iphone
+- id: '1570733676835'
+  alias: Rofi Stofa 3 click up Lampi color loop
+  trigger:
+  - entity_id: sensor.stofa_switch
+    platform: state
+    to: 3_click_up
+  condition: []
+  action:
+  - data:
+      effect: colorloop
+      entity_id: light.stofulampi
+    service: light.turn_on
+- id: '1570733951346'
+  alias: Rofi Stofa 1 hold up Loftljós OFF
+  trigger:
+  - entity_id: sensor.stofa_switch
+    platform: state
+    to: 1_hold_up
+  condition: []
+  action:
+  - device_id: 240cbf25ff0d4ab9aff1ff1ee3c2cf86
+    domain: light
+    entity_id: light.stofa_2
+    type: turn_off
+- id: '1570733986511'
+  alias: Rofi Stofa 4 click up Ljós OFF
+  trigger:
+  - entity_id: sensor.stofa_switch
+    platform: state
+    to: 4_click_up
+  condition: []
+  action:
+  - device_id: 11682b30dbf6451995d99824a6408d60
+    domain: light
+    entity_id: light.stofulampi_2
+    type: turn_off
+  - device_id: 240cbf25ff0d4ab9aff1ff1ee3c2cf86
+    domain: light
+    entity_id: light.stofa_2
+    type: turn_off
+- id: '1570737674012'
+  alias: Rofi Stofa 2 hold up Loftljós Dim 100
+  trigger:
+  - entity_id: sensor.stofa_switch
+    platform: state
+    to: 2_hold_up
+  condition: []
+  action:
+  - data:
+      brightness: 100
+      entity_id: light.stofa
+    service: light.turn_on
+- id: '1571060308979'
+  alias: Dyrabjalla Battery
+  trigger:
+  - entity_id: sensor.ring_front_door_battery
+    platform: state
+    to: '10'
+  condition: []
+  action:
+  - data:
+      data:
+        push:
+          category: GENERIC
+      message: Dyrabjalla battery {{states('sensor.ring_front_door_battery')}}%
+    service: notify.ios_finnurs_iphone
+  - data:
+      data:
+        push:
+          category: GENERIC
+      message: Dyrabjalla battery {{states('sensor.ring_front_door_battery')}}%
+    service: notify.mobile_app_lovisa_thora_s_sm_g973f
+- id: '1572299553184'
+  alias: Rofi Eldhús 1 click up Borðstofuljós ON
+  trigger:
+  - entity_id: sensor.kitchen
+    platform: state
+    to: 1_click_up
+  condition: []
+  action:
+  - device_id: 32b6d9f31f7a4f91ba965e15d46bbe14
+    domain: light
+    entity_id: light.bordstofa_2
+    type: turn_on
+- id: '1572299624140'
+  alias: Rofi Eldhús 1 hold up Borðstofa OFF
+  trigger:
+  - entity_id: sensor.kitchen
+    platform: state
+    to: 1_hold_up
+  condition: []
+  action:
+  - device_id: 32b6d9f31f7a4f91ba965e15d46bbe14
+    domain: light
+    entity_id: light.bordstofa_2
+    type: turn_off
+- id: '1572299692482'
+  alias: Rofi Eldhús 2 click up Búr ON
+  trigger:
+  - entity_id: sensor.kitchen
+    platform: state
+    to: 2_click_up
+  condition: []
+  action:
+  - device_id: 6911d6a17d1f41f8b1d34c6bf422c56f
+    domain: light
+    entity_id: light.bur
+    type: turn_on
+- id: '1572299730324'
+  alias: Rofi Eldhús 2 hold up Búr OFF
+  trigger:
+  - entity_id: sensor.kitchen
+    platform: state
+    to: 2_hold_up
+  condition: []
+  action:
+  - device_id: 6911d6a17d1f41f8b1d34c6bf422c56f
+    domain: light
+    entity_id: light.bur
+    type: turn_off
+- id: '1572299785802'
+  alias: Rofi Eldhús 3 click up Eldhús ON
+  trigger:
+  - entity_id: sensor.kitchen
+    platform: state
+    to: 3_click_up
+  condition: []
+  action:
+  - device_id: de07e4981ebf43e3a4e215847583473f
+    domain: light
+    entity_id: light.eldhus_2
+    type: turn_on
+- id: '1572299835780'
+  alias: Rofi Eldhús 3 hold up Eldhús OFF
+  trigger:
+  - entity_id: sensor.kitchen
+    platform: state
+    to: 3_hold_up
+  condition: []
+  action:
+  - device_id: de07e4981ebf43e3a4e215847583473f
+    domain: light
+    entity_id: light.eldhus_2
+    type: turn_off
+- id: '1572299886387'
+  alias: Rofi Eldhús 4 click up Ljós OFF
+  trigger:
+  - entity_id: sensor.kitchen
+    platform: state
+    to: 4_click_up
+  condition: []
+  action:
+  - device_id: 32b6d9f31f7a4f91ba965e15d46bbe14
+    domain: light
+    entity_id: light.bordstofa_2
+    type: turn_off
+  - device_id: 6911d6a17d1f41f8b1d34c6bf422c56f
+    domain: light
+    entity_id: light.bur
+    type: turn_off
+  - device_id: de07e4981ebf43e3a4e215847583473f
+    domain: light
+    entity_id: light.eldhus_2
+    type: turn_off

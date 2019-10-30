@@ -1,0 +1,17 @@
+# logs
+logs
+*.log
+
+# secrets
+secrets.yaml
+
+# dirs
+.storage
+tts
+deps
+known_devices.yaml
+.ring_cache.pickle
+*.db
+.cloud
+.ios.conf
+

@@ -1,0 +1,84 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+homeassistant:
+  customize:
+    person.finnur_eiriksson:
+      gravatar: klauvi@gmail.com
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+discovery:
+sensor:
+  - platform: ring
+  - platform: huesensor
+  - platform: history_stats
+    name: TV ON this week
+    entity_id: media_player.philips_tv
+    state: 'on'
+    type: time
+    start: '{{as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400}}'
+    end: '{{ now() }}'
+ring:
+  username: !secret ring_username
+  password: !secret ring_password
+
+camera:
+  - platform: ring
+binary_sensor:
+  - platform: ring
+  - platform: huesensor
+switch:
+  - platform: ring
+light:
+  - platform: ring
+    #apple_tv:
+    #  - host: 10.22.2.186 
+    #    login_id: 00000000-5a09-eeff-6de6-e4baeae84af3
+    #    name: AppleTV Stofa
+
+media_player:
+  - platform: philips_android_tv
+    name: Philips TV
+    host: 10.22.2.185
+    mac: 1c:1e:e3:a8:43:8f
+    username: xLTWvawaOjxh1EvV
+    password: 4d14bb2f4d86a3e58cc366d49cb95aec79137fcc479b0539872e1c8f9766442f
+    favorite_channels_only: true
+device_tracker:
+  - platform: cisco_mobility_express
+    host: 10.22.2.18
+    username: !secret cisco_username
+    password: !secret ring_password
+    ssl: true
+    verify_ssl: false
+    consider_home: 180
+influxdb:
+  host: localhost
+  include:
+    domains:
+      - sensor
+      - media_player
+      - device_tracker
+      - binary_sensor
+      - weather
+edgeos:
+  host: 10.22.2.254
+  ssl: true
+  cert_file: router.cer
+  username: hassio
+  password: hassio
+  monitored_interfaces:
+    - eth0
+    - eth1
+    - eth4
+  unit: 'K'
