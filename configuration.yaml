@@ -14,30 +14,29 @@ homeassistant:
 tts:
   - platform: google_translate
 
+logger:
+    default: error
+recorder:
+    db_url: mysql://hass:sl0gan@127.0.0.1/homeassistant?charset=utf8
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 discovery:
-sensor:
-  - platform: ring
-  - platform: huesensor
-  - platform: history_stats
-    name: TV ON this week
-    entity_id: media_player.philips_tv
-    state: 'on'
-    type: time
-    start: '{{as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400}}'
-    end: '{{ now() }}'
+sensor: !include sensor.yaml
+scene: !include scene.yaml
+switch: !include switch.yaml
+binary_sensor: !include binary_sensor.yaml
+# input_select: !include input_select.yaml
+# input_boolean: !include input_boolean.yaml
+# input_number: !include input_number.yaml
+# input_text: !include input_text.yaml
+# input_datetime: !include input_datetime.yaml
+
 ring:
   username: !secret ring_username
   password: !secret ring_password
 
 camera:
-  - platform: ring
-binary_sensor:
-  - platform: ring
-  - platform: huesensor
-switch:
   - platform: ring
 light:
   - platform: ring

@@ -1,0 +1,9 @@
+  - platform: ring
+  - platform: huesensor
+  - platform: history_stats
+    name: TV ON this week
+    entity_id: media_player.philips_tv
+    state: 'on'
+    type: time
+    start: '{{as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400}}'
+    end: '{{ now() }}'
