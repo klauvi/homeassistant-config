@@ -7,3 +7,18 @@
     type: time
     start: '{{as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400}}'
     end: '{{ now() }}'
+
+  - platform: template
+    sensors:
+      klosett_nidri_temp_rounded:
+        friendly_name: "Klósett niðri hitastig"
+        value_template: "{{states('sensor.klosett_nidri_sensor_temperature')|round}}"
+      klosett_uppi_temp_rounded:
+        friendly_name: "Klósett uppi hitastig"
+        value_template: "{{states('sensor.klosett_uppi_sensor_temperature')|round}}"
+      eldhus_temp_rounded:
+        friendly_name: "Eldhús hitastig"
+        value_template: "{{states('sensor.eldhus_sensor_temperature')|round}}"
+      bilskur_temp_rounded:
+        friendly_name: "Bílskúr hitastig"
+        value_template: "{{states('sensor.bilskur_sensor_temperature')|round}}"
