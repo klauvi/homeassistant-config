@@ -201,3 +201,83 @@
     domain: light
     entity_id: light.eldhus_2
     type: turn_off
+- id: '1573680890158'
+  alias: Traffic update Finnur vinna
+  trigger:
+  - platform: time_pattern
+    minutes: /5
+  condition:
+  - condition: time
+    after: 07:30:00
+    before: 09:30:00
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - service: homeassistant.update_entity
+    data:
+      entity_id: sensor.finnur_vinna
+- id: '1573682916430'
+  alias: Traffic update Lovísa vinna
+  trigger:
+  - platform: time_pattern
+    minutes: /5
+  condition:
+  - condition: time
+    after: 07:30:00
+    before: 09:30:00
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - service: homeassistant.update_entity
+    data:
+      entity_id: sensor.lovisa_vinna
+- id: '1573682940486'
+  alias: Traffic update Finnur heim
+  trigger:
+  - platform: time_pattern
+    minutes: /5
+  condition:
+  - condition: time
+    after: '15:00:00'
+    before: '17:30:00'
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - service: homeassistant.update_entity
+    data:
+      entity_id: sensor.finnur_heim
+- id: '1573682967928'
+  alias: Traffic update Lovísa heim
+  trigger:
+  - platform: time_pattern
+    minutes: /5
+  condition:
+  - condition: time
+    after: '14:30:00'
+    before: '17:30:00'
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - service: homeassistant.update_entity
+    data:
+      entity_id: sensor.lovisa_heim

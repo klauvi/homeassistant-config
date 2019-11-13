@@ -22,3 +22,27 @@
       bilskur_temp_rounded:
         friendly_name: "Bílskúr hitastig"
         value_template: "{{states('sensor.bilskur_sensor_temperature')|round}}"
+  - platform: google_travel_time
+    name: Finnur vinna
+    scan_interval: 60000
+    api_key: !secret google_key
+    origin: zone.home
+    destination: zone.sensa
+  - platform: google_travel_time
+    name: Lovisa vinna
+    scan_interval: 60000
+    api_key: !secret google_key
+    origin: zone.home
+    destination: zone.hr
+  - platform: google_travel_time
+    name: Finnur heim
+    scan_interval: 60000
+    api_key: !secret google_key
+    origin: zone.sensa
+    destination: zone.home
+  - platform: google_travel_time
+    name: Lovisa heim
+    scan_interval: 60000
+    api_key: !secret google_key
+    origin: zone.hr
+    destination: zone.home

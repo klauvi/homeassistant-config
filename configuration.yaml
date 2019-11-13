@@ -32,6 +32,25 @@ binary_sensor: !include binary_sensor.yaml
 # input_text: !include input_text.yaml
 # input_datetime: !include input_datetime.yaml
 
+zone:
+  name: Home
+  latitude: !secret lat_home
+  longitude: !secret long_home
+  radius: 200
+  icon: mdi:home
+zone 1:
+  name: Sensa
+  latitude: !secret lat_sensa
+  longitude: !secret long_sensa
+  radius: 200
+  icon: mdi:school
+zone 2:
+  name: HR
+  latitude: !secret lat_hr
+  longitude: !secret long_hr
+  radius: 200
+  icon: mdi:school
+
 ring:
   username: !secret ring_username
   password: !secret ring_password
